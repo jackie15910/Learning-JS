@@ -1,7 +1,7 @@
 const urlEncode = function(text) {
-  text = text.replace(" ","%20");
-  return text;
-}
+  const words = text.trim().split(" ");
+  return words.join("%20")
+};
 
 console.log(urlEncode("Lighthouse Labs"));
 console.log(urlEncode(" Lighthouse Labs "));
