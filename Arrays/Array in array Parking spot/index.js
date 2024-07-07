@@ -2,16 +2,13 @@ const whereCanIPark = function (spots, vehicle) {
     for(let y = 0; y < spots.length; y++){
       for(let x = 0; x < spots[y].length; x++){
         if (vehicle === 'regular' && spots[y][x] === 'R'){
-          let parking_spot = [x,y]
-          return parking_spot
+          return [x,y];
         }
         else if (vehicle === 'small' && (spots[y][x] === 'R' || spots[y][x] === 'S')){
-          let parking_spot = [x,y]
-          return parking_spot
+          return [x,y];
         }
         else if (vehicle === 'motorcycle' && (spots[y][x] === 'R' || spots[y][x] === 'S' || spots[y][x] === 'M')){
-          let parking_spot = [x,y]
-          return parking_spot
+          return [x,y];
         }
       }
     }

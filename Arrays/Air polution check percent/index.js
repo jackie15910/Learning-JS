@@ -1,16 +1,15 @@
 const checkAir = function (samples, threshold) {
-  let dirty_air = 0;
-  let pollution = 0;
-  for(let air = 0; air < samples.length; air++){
-    if(samples[air] == 'dirty'){
-      dirty_air+=1;
+  let dirtySamp = 0;
+  for(let i = 0; i < samples.length; i++){
+    if(samples[i] == 'dirty'){
+      dirtySamp++;
     }
   }
-  if (dirty_air/samples.length < threshold){
-    return "Clean"
+  if((dirtySamp/samples.length) <= threshold){
+    return "Clean";
   }
-  else{
-    return "Polluted"
+  else {
+    return "Polluted";
   }
 };
 
