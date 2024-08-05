@@ -1,26 +1,35 @@
-const repeatNumbers = function (data) {
-  let output = [];
-  for(const array of data){
-    let value1 = array[0];
-    let value2 = array[1];
-    let repeatedValue = value1.toString().repeat(value2)
-    output.push(repeatedValue);
+var isAnagram = function(s, t) {
+  if(s.length !== t.length){
+      return false;
+  }
+  const count = new Map();
+  for (const char of s) {
+      count.set(char, (count.get(char) || 0) +1);
   }
 
-  return output.join(", ");
+  for (const char of t) {
+      if (!count.has(char) || count.get(char) === 0) {
+          return false;
+      }
+      count.set(char, count.get(char) -1);
+  }
+  return true
+}
+
+var twoSum = function (nums, target) {
+  let mp = new Map()
+
+  for (let i = 0; i < nums.length; i++) {
+      let diff = target - nums[i]
+
+      if (mp.has(diff)) {
+          return [i, mp.get(diff)]
+      }
+
+      mp.set(nums[i], i)
+  }
 };
 
-console.log(repeatNumbers([[1, 10]]));
-console.log(
-  repeatNumbers([
-    [1, 2],
-    [2, 3],
-  ])
-);
-console.log(
-  repeatNumbers([
-    [10, 4],
-    [34, 6],
-    [92, 2],
-  ])
-);
+var groupAnagrams = function(strs) {
+    
+};
