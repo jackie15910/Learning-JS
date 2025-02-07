@@ -1,20 +1,25 @@
 var isAnagram = function(s, t) {
-  if(s.length !== t.length){
-      return false;
-  }
-  const count = new Map();
-  for (const char of s) {
-      count.set(char, (count.get(char) || 0) +1);
-  }
 
-  for (const char of t) {
-      if (!count.has(char) || count.get(char) === 0) {
-          return false;
-      }
-      count.set(char, count.get(char) -1);
-  }
-  return true
-}
+    if(s.length !== t.length){
+        console.log("false length not the same");
+        return false;
+    }
+    const map = new Map();
+    for(char of s){
+        console.log(char);
+        map.set(char, (map.get(char)||0)+1);
+    };
+    for(char of t){
+        if(!map.has(char)|| map.get(char)===0){
+            console.log("false incorrect letter");
+            return false
+        }
+        map.set(char, map.get(char)-1);
+};
+console.log("true")
+return true;
+};
+isAnagram("anagam","nagaram");
 
 var twoSum = function (nums, target) {
   let mp = new Map()
