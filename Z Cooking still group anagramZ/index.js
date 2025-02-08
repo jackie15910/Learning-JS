@@ -19,6 +19,7 @@ var isAnagram = function(s, t) {
 console.log("true")
 return true;
 };
+
 isAnagram("anagam","nagaram");
 
 var twoSum = function (nums, target) {
@@ -36,5 +37,16 @@ var twoSum = function (nums, target) {
 };
 
 var groupAnagrams = function(strs) {
-    
-};
+    let mp = new Map()
+    for (const word of strs) {
+      const sortedWord = word.split('').sort().join('');
+  
+      if (mp.has(sortedWord)) {
+        mp.get(sortedWord).push(word);
+      } else {
+        mp.set(sortedWord, [word]);
+      }
+    }
+  
+    return Array.from(mp.values());
+  };
