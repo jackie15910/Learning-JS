@@ -1,40 +1,39 @@
-var threeSum = function(nums) {
-    let sortedNums = nums.sort((a, b) => a - b);
-    let answer = [];
+class MinStack {
+    constructor() {
+        this.stack = [];
+        this.minStack = [];
+    }
 
-    for (let i = 0; i < sortedNums.length - 2; i++) {
-        if (i > 0 && sortedNums[i] === sortedNums[i - 1]) {
-            continue;
-        }
-
-        let scan1 = i + 1;
-        let scan2 = sortedNums.length - 1;
-
-        while (scan1 < scan2) {
-            let sum = sortedNums[i] + sortedNums[scan1] + sortedNums[scan2];
-
-            if (sum === 0) {
-                answer.push([sortedNums[i], sortedNums[scan1], sortedNums[scan2]]);
-                while (scan1 < scan2 && sortedNums[scan1] === sortedNums[scan1 + 1]) {
-                    scan1++;
-                }
-                while (scan1 < scan2 && sortedNums[scan2] === sortedNums[scan2 - 1]) {
-                    scan2--;
-                }
-                scan1++;
-                scan2--;
-            } else if (sum < 0) {
-                scan1++;
-            } else {
-                scan2--;
-            }
+    push(val) {
+        this.stack.push(val);
+        if(this.minStack.length === 0 || val <= this.minStack[this.minStack.length-1]){
+            this.minStack.push(val);
         }
     }
-    return answer;
-};
 
+    pop() {
+        if(this.stack.pop() === this.minStack[this.minStack.length -1]) {
+            this.minStack.pop();
+        }
 
-console.log(threeSum([-1,0,1,2,-1,-4]));
-// console.log(sortedNums);
-// Input: nums = [-1,0,1,2,-1,-4]
-// Output: [[-1,-1,2],[-1,0,1]]
+    }
+
+    top() {
+        return this.stack[this.stack.length-1];
+    }
+
+    getMin() {
+        return Math.min(...this.stack);
+    }
+}
+
+let minStack = new MinStack();
+
+// These are just normal method calls — they test your implementation:
+minStack.push(1);
+minStack.push(2);
+minStack.push(0);
+minStack.getMin(); // should return 0
+minStack.pop();
+minStack.top();    // should return 2
+minStack.getMin(); // should return 1
