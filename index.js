@@ -1,39 +1,17 @@
-class MinStack {
-    constructor() {
-        this.stack = [];
-        this.minStack = [];
-    }
-
-    push(val) {
-        this.stack.push(val);
-        if(this.minStack.length === 0 || val <= this.minStack[this.minStack.length-1]){
-            this.minStack.push(val);
+var maxArea = function(height) {
+    let maxArea = 0;
+    for(let i = 0; i < height.length; i++){
+        let j = height.length-1;
+        while(i < j){
+            let smaller = Math.min(i,j);
+            let width = j-i;
+            let area = smaller*width;
+            if(area>maxArea){
+                maxArea = area;
+            }
         }
     }
+    return maxArea;
+};
 
-    pop() {
-        if(this.stack.pop() === this.minStack[this.minStack.length -1]) {
-            this.minStack.pop();
-        }
-
-    }
-
-    top() {
-        return this.stack[this.stack.length-1];
-    }
-
-    getMin() {
-        return Math.min(...this.stack);
-    }
-}
-
-let minStack = new MinStack();
-
-// These are just normal method calls — they test your implementation:
-minStack.push(1);
-minStack.push(2);
-minStack.push(0);
-minStack.getMin(); // should return 0
-minStack.pop();
-minStack.top();    // should return 2
-minStack.getMin(); // should return 1
+console.log(maxArea([1,8,6,2,5,4,8,3,7]));
